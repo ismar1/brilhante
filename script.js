@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (codigo.length >= 1) {
       document.querySelector('#custoResul').innerHTML = 'Custo: R$' + parseFloat(custo).toFixed(2)
 
-      custo = parseInt(custo)
+      custo = parseFloat(custo)
       venda = custo + (margem * custo) / 100
       vendaDesconto = parseFloat(venda - (10 * venda) / 100).toFixed(2)
 
