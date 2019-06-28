@@ -13,12 +13,16 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelector('#lucroDesconto').innerHTML = 'Lucro com desconto: R$' + parseFloat(vendaDesconto - value).toFixed(2)
   }
 
-  // Função para limpar campos
-  document.querySelector('#clear2').addEventListener('click', function () {
-    document.querySelector('#custo').innerHTML = ''
+  // Funções para limpar campos (incompleta)
+  document.querySelector('#clear').addEventListener('click', function () {
+    document.querySelector('#valor').value = ''
   })
 
-  // Tratamento do código e impressão dos resultados
+  document.querySelector('#clear2').addEventListener('click', function () {
+    document.querySelector('#custo').value = ''
+  })
+
+  // Conversão de código para número e impressão dos resultados
   document.querySelector('#btn').addEventListener('click', function () {
     margem = parseInt(document.querySelector('#margem').value)
     valor = parseInt(document.querySelector('#valor').value)
