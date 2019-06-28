@@ -1,55 +1,56 @@
 document.addEventListener('DOMContentLoaded', function () {
+  // Função do cálculo
+  const handle = value => {
+    document.querySelector('#custoResul').innerHTML = 'Custo: R$' + parseFloat(value).toFixed(2)
+  
+    value = parseFloat(value)
+    venda = value + (margem * value) / 100
+    vendaDesconto = parseFloat(venda - (10 * venda) / 100).toFixed(2)
+
+    document.querySelector('#vendaResul').innerHTML = 'Venda: R$' + parseFloat(venda).toFixed(2)
+    document.querySelector('#vendaDesconto').innerHTML = '-10%: R$' + vendaDesconto
+    document.querySelector('#lucro').innerHTML = 'Lucro sem desconto: R$' + parseFloat(venda - value).toFixed(2)
+    document.querySelector('#lucroDesconto').innerHTML = 'Lucro com desconto: R$' + parseFloat(vendaDesconto - value).toFixed(2)
+  }
+
+  // Função para limpar campos
+  document.querySelector('#clear2').addEventListener('click', function () {
+    document.querySelector('#custo').innerHTML = ''
+  })
+
+  // Tratamento do código e impressão dos resultados
   document.querySelector('#btn').addEventListener('click', function () {
     margem = parseInt(document.querySelector('#margem').value)
+    valor = parseInt(document.querySelector('#valor').value)
     codigo = document.querySelector('#custo').value
     codigo = codigo.toLowerCase().split('')
     custo = ''
+    brilhante = ['b', 'r', 'i', 'l', 'h', 'a', 'n', 't', 'e', 'x']
 
-    codigo.forEach(el => {
-      switch (el) {
-        case 'b':
-          custo += '1'
-          break
-        case 'r':
-          custo += '2'
-          break
-        case 'i':
-          custo += '3'
-          break
-        case 'l':
-          custo += '4'
-          break
-        case 'h':
-          custo += '5'
-          break
-        case 'a':
-          custo += '6'
-          break
-        case 'n':
-          custo += '7'
-          break
-        case 't':
-          custo += '8'
-          break
-        case 'e':
-          custo += '9'
-          break
-        default:
-          custo += '0'
-      }
+    codigo.forEach(x => {
+      brilhante.forEach((e, i) => {
+        if (x == e) {
+          valueCurrent = ++i
+
+          if (valueCurrent == 10) {
+            custo += '0'
+          } else {
+            custo += valueCurrent.toString()
+          }
+        }
+      })
     })
     
-    if (codigo.length >= 1) {
-      document.querySelector('#custoResul').innerHTML = 'Custo: R$' + parseFloat(custo).toFixed(2)
+    codigoBoolean = codigo != ''
 
-      custo = parseFloat(custo)
-      venda = custo + (margem * custo) / 100
-      vendaDesconto = parseFloat(venda - (10 * venda) / 100).toFixed(2)
-
-      document.querySelector('#vendaResul').innerHTML = 'Venda: R$' + parseFloat(venda).toFixed(2)
-      document.querySelector('#vendaDesconto').innerHTML = '-10%: R$' + vendaDesconto
-      document.querySelector('#lucro').innerHTML = 'Lucro sem desconto: R$' + parseFloat(venda - custo).toFixed(2)
-      document.querySelector('#lucroDesconto').innerHTML = 'Lucro com desconto: R$' + parseFloat(vendaDesconto - custo).toFixed(2)
+    if (valor && codigoBoolean) {
+      alert('Preencha APENAS um valor OU um código')
+    } else {
+      if (codigoBoolean) {
+        handle(custo)
+      } else if (valor) {
+        handle(valor)
+      }
     }
   })
 })
