@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
   // Função do cálculo
-  const handle = value => {
+  const calculate = value => {
     document.querySelector('#custoResul').innerHTML = 'Custo: R$' + parseFloat(value).toFixed(2)
   
     value = parseFloat(value)
@@ -13,17 +13,8 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelector('#lucroDesconto').innerHTML = 'Lucro com desconto: R$' + parseFloat(vendaDesconto - value).toFixed(2)
   }
 
-  // Funções para limpar campos (incompleta)
-  document.querySelector('#clear').addEventListener('click', function () {
-    document.querySelector('#valor').value = ''
-  })
-
-  document.querySelector('#clear2').addEventListener('click', function () {
-    document.querySelector('#custo').value = ''
-  })
-
   // Conversão de código para número e impressão dos resultados
-  document.querySelector('#btn').addEventListener('click', function () {
+  const execute = () => {
     margem = parseInt(document.querySelector('#margem').value)
     valor = parseInt(document.querySelector('#valor').value)
     codigo = document.querySelector('#custo').value
@@ -31,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
     custo = ''
     brilhante = ['b', 'r', 'i', 'l', 'h', 'a', 'n', 't', 'e', 'x']
 
+    // Conversão do código
     codigo.forEach(x => {
       brilhante.forEach((e, i) => {
         if (x == e) {
@@ -44,17 +36,42 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       })
     })
-    
+
     codigoBoolean = codigo != ''
 
-    if (valor && codigoBoolean) {
-      alert('Preencha APENAS um valor OU um código')
-    } else {
-      if (codigoBoolean) {
-        handle(custo)
-      } else if (valor) {
-        handle(valor)
+    if (custo.split('').length == codigo.length) {
+      if (valor && codigoBoolean) {
+        alert('Preencha APENAS um valor OU um código')
+      } else {
+        if (codigoBoolean) {
+          calculate(custo)
+        } else {
+          calculate(valor)
+        }
       }
-    }
+    } else alert('Código inválido')
+  }
+
+  // Calcula ao pressionar enter
+  document.querySelector('#valor').addEventListener('keypress', e => {
+    if (e.keyCode == 13)
+      execute()
+  })
+  document.querySelector('#custo').addEventListener('keypress', e => {
+    if (e.keyCode == 13)
+      execute()
+  })
+
+  // Calcula ao clicar no botão
+  document.querySelector('#btn').addEventListener('click', function () {
+    execute()
+  })
+
+  // Funções para limpar campos
+  document.querySelector('#clear').addEventListener('click', function () {
+    document.querySelector('#valor').value = ''
+  })
+  document.querySelector('#clear2').addEventListener('click', function () {
+    document.querySelector('#custo').value = ''
   })
 })
