@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
   // Função do cálculo
   const calculate = value => {
     document.querySelector('#custoResul').innerHTML = 'Custo: R$' + parseFloat(value).toFixed(2)
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Conversão de código para número e impressão dos resultados
   const execute = () => {
-    margem = parseInt(document.querySelector('#margem').value)
+    margem = (document.querySelector('#input-peca').checked) ? 60 : 40
     valor = parseInt(document.querySelector('#valor').value)
     codigo = document.querySelector('#custo').value
     codigo = codigo.toLowerCase().split('')
@@ -45,9 +45,9 @@ document.addEventListener('DOMContentLoaded', function () {
       } else {
         if (codigoBoolean) {
           calculate(custo)
-        } else {
+        } else if (valor) {
           calculate(valor)
-        }
+        } else alert('Preencha um dos campos')
       }
     } else alert('Código inválido')
   }
@@ -63,15 +63,15 @@ document.addEventListener('DOMContentLoaded', function () {
   })
 
   // Calcula ao clicar no botão
-  document.querySelector('#btn').addEventListener('click', function () {
+  document.querySelector('#btn').addEventListener('click', function() {
     execute()
   })
 
   // Funções para limpar campos
-  document.querySelector('#clear').addEventListener('click', function () {
+  document.querySelector('#clear').addEventListener('click', function() {
     document.querySelector('#valor').value = ''
   })
-  document.querySelector('#clear2').addEventListener('click', function () {
+  document.querySelector('#clear2').addEventListener('click', function() {
     document.querySelector('#custo').value = ''
   })
 })

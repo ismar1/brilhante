@@ -51,9 +51,24 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-10">
-      <div class="input-group">
+  <form>
+    <div class="text-center">
+      <div class="mr-3 d-inline">
+        <label>
+          <input type="radio" name="tipo" value="60" id='input-peca' checked> <span id="peca">Peça</span>
+        </label>
+      </div>
+      
+      <label>
+        <input type="radio" name="tipo" value="40" id='input-oleo'> <span id="oleo">Óleo</span>
+      </label>
+    </div>
+  </form>
+  
+  <!-- <div class="row">
+    <div class="col-10"> -->
+
+      <!-- <div class="input-group">
         <div class="input-group-prepend">
           <div class="input-group-text">
             <span>Margem de lucro</span>
@@ -67,9 +82,9 @@
             <span>%</span>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
+      </div> -->
+    <!-- </div>
+  </div> -->
   
   <button class="btn btn-outline-primary btn-block my-3" id="btn">Calcular</button>
 
