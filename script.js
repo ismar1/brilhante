@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
     execute()
   })
 
-  // Funções para limpar campos
+  // Ações para limpar e focar os campos
   document.querySelector('#clear').addEventListener('click', function() {
     const valor = document.querySelector('#valor')
     valor.value = ''
