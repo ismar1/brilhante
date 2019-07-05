@@ -5,4 +5,4 @@ A palavra BRILHANTE contém 9 letras, representando os algarismos de 1 à 9, res
 
 Exemplos: lh = 45, ax = 60 e nxi = 703.
 # Margem de lucro
-Caso a opção "Peça" esteja selecionada, a margem de lucro da mercadoria em questão será de 60%. Se "Óleo" estiver selecionada, a margem será de 40%.
+Caso a opção "Peça" esteja selecionada, a margem de lucro da mercadoria em questão será de 60%. Se "Óleo" estiver selecionado, a margem será de 40%.
