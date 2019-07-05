@@ -69,9 +69,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Ações para limpar os campos
   document.querySelector('#clear').addEventListener('click', function() {
-    document.querySelector('#valor').value = ''
+    const valor = document.querySelector('#valor')
+    valor.value = ''
+    valor.focus()
   })
   document.querySelector('#clear2').addEventListener('click', function() {
-    document.querySelector('#custo').value = ''
+    const custo = document.querySelector('#custo')
+    custo.value = ''
+    custo.focus()
   })
 })
