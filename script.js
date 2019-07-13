@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
+  document.querySelector('#valor').focus()
+
   // Função do cálculox
   const calculate = value => {
     document.querySelector('#custoResul').innerHTML = 'Custo: R$' + parseFloat(value).toFixed(2)
