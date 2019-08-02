@@ -1,24 +1,27 @@
 document.addEventListener('DOMContentLoaded', function() {
   document.querySelector('#valor').focus()
 
-  // Função do cálculox
+  // Função do cálculo e impressão dos resultados
   const calculate = value => {
-    document.querySelector('#custoResul').innerHTML = 'Custo: R$' + parseFloat(value).toFixed(2)
-  
     value = parseFloat(value)
     venda = value + (margem * value) / 100
     vendaDesconto = parseFloat(venda - (10 * venda) / 100).toFixed(2)
-
+    
+    // Impressão dos resultados
+    document.querySelector('#custoResul').innerHTML = 'Custo: R$' + parseFloat(value).toFixed(2)
     document.querySelector('#vendaResul').innerHTML = 'Venda: R$' + parseFloat(venda).toFixed(2)
     document.querySelector('#vendaDesconto').innerHTML = '-10%: R$' + vendaDesconto
+
     document.querySelector('#lucro').innerHTML = 'Lucro sem desconto: R$' + parseFloat(venda - value).toFixed(2)
     document.querySelector('#lucroDesconto').innerHTML = 'Lucro com desconto: R$' + parseFloat(vendaDesconto - value).toFixed(2)
+
+    document.querySelector('#back-venda').className += ' py-1'
   }
 
-  // Conversão de código para número e impressão dos resultados
+  // Conversão de código para número e execução dos cálculos
   const execute = () => {
     margem = (document.querySelector('#input-peca').checked) ? 60 : 40
-    valor = parseInt(document.querySelector('#valor').value)
+    valor = parseFloat(document.querySelector('#valor').value)
     codigo = document.querySelector('#custo').value
     codigo = codigo.toLowerCase().split('')
     custo = ''
@@ -26,30 +29,36 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Conversão do código
     codigo.forEach(x => {
-      brilhante.forEach((e, i) => {
-        if (x == e) {
-          valueCurrent = ++i
+      if (x == ',' || x == '.')
+        custo += '.'
+      else {
+        // Para cada caracter dado pelo usuário é comparado com o array 'brilhante' para que seja feita a conversão, caso seja igual
+        brilhante.forEach((e, i) => {
+          if (x == e) {
+            valueCurrent = ++i
 
-          if (valueCurrent == 10) {
-            custo += '0'
-          } else {
-            custo += valueCurrent.toString()
+            if (valueCurrent == 10) {
+              custo += '0'
+            } else {
+              custo += valueCurrent.toString()
+            }
           }
-        }
-      })
+        })
+      }
     })
 
     codigoBoolean = codigo != ''
 
-    if (custo.split('').length == codigo.length) {
-      if (valor && codigoBoolean) {
+    // Se o length do código definido pelo usuário é igual o resultado da conversão (custo)
+    if (custo.split('').length == codigo.join('').toString().length) {
+      if (valor && codigoBoolean)
         alert('Preencha APENAS um valor OU um código')
-      } else {
-        if (codigoBoolean) {
+      else {
+        if (codigoBoolean)
           calculate(custo)
-        } else if (valor) {
+        else if (valor)
           calculate(valor)
-        } else alert('Preencha um dos campos')
+        else alert('Preencha um dos campos')
       }
     } else alert('Código inválido')
   }
